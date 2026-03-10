@@ -51,7 +51,17 @@ if(toggle && menu) {
 
 // Shrink nav on scroll
 const nav = document.getElementById("navbar");
+let lastScrollY = window.scrollY;
+const scrollDelta = 6;
+
+if (nav) {
+    nav.style.top = "0";
+    nav.style.willChange = "top";
+}
+
 window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
     if(window.scrollY > 50){
         nav.classList.add("py-4");
         nav.classList.remove("py-8");
@@ -59,6 +69,18 @@ window.addEventListener("scroll", () => {
         nav.classList.add("py-8");
         nav.classList.remove("py-4");
     }
+
+    // Hide/show navbar by scroll direction on all screen sizes.
+    if (currentScrollY <= 10) {
+        nav.style.top = "0";
+    } else if (currentScrollY > lastScrollY + scrollDelta) {
+        nav.style.top = "-130px";
+        closeMobileMenu();
+    } else if (currentScrollY < lastScrollY - scrollDelta) {
+        nav.style.top = "0";
+    }
+
+    lastScrollY = currentScrollY;
 });
 
 // Advanced scroll reveal based on Intersection Observer
