@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Curityba Advocacia Criminal</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS (V4 in Browser) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+            --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+            
+            --color-brand-black: #030705;
+            --color-brand-green-dark: #08140F;
+            --color-brand-green: #112A20;
+            --color-brand-gold: #D4AF37;
+            --color-brand-gold-light: #E8C968;
+            --color-brand-cream: #F4F1EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--color-brand-black);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-brand-black);
+            color: var(--color-brand-cream);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+        }
+
+        /* Custom Utilities for the Editorial Look */
+        .text-massive {
+            font-size: clamp(3rem, 8vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-pill {
+            border: 1px solid rgba(244, 241, 235, 0.2);
+            border-radius: 100px;
+            background: rgba(8, 20, 15, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .thin-border {
+            border-color: rgba(244, 241, 235, 0.15);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, var(--color-brand-gold-light), var(--color-brand-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-x {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-x.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-subcopy {
+            max-width: 40rem;
+            color: rgba(244, 241, 235, 0.82);
+            font-size: clamp(1rem, 1.25vw, 1.35rem);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .hero-cta-primary {
+            background: linear-gradient(120deg, var(--color-brand-gold-light), var(--color-brand-gold));
+            color: var(--color-brand-black);
+            border-radius: 999px;
+            padding: 0.95rem 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid rgba(232, 201, 104, 0.45);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.42);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+        }
+
+        .hero-cta-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.04);
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-cta-secondary {
+            color: var(--color-brand-cream);
+            border: 1px solid rgba(244, 241, 235, 0.22);
+            border-radius: 999px;
+            padding: 0.9rem 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.7rem;
+            transition: border-color 0.22s ease, color 0.22s ease, background-color 0.22s ease;
+        }
+
+        .hero-cta-secondary:hover {
+            color: var(--color-brand-gold-light);
+            border-color: rgba(212, 175, 55, 0.55);
+            background-color: rgba(244, 241, 235, 0.03);
+        }
+
+        .faq-item summary {
+            list-style: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item[open] .faq-icon {
+            transform: rotate(180deg);
+            color: var(--color-brand-gold);
+        }
+
+        .faq-answer {
+            color: rgba(244, 241, 235, 0.75);
+            font-weight: 300;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 767px) {
+            .hero-cta-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-brand-black text-brand-cream selection:bg-brand-gold selection:text-brand-black">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="font-serif text-2xl tracking-widest uppercase cursor-pointer z-50" onclick="scrollToId('home')">
+                Lucas Curityba<span class="text-brand-gold">.</span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8 nav-pill px-8 py-3">
+                <button onclick="scrollToId('sobre')" class="text-xs tracking-[0.2em] uppercase hover:text-brand-gold transition-colors cursor-pointer">O Escritório</button>
+                <button onclick="scrollToId('atuacao')" class="text-xs tracking-[0.2em] uppercase hover:text-brand-gold transition-colors cursor-pointer">Expertise</button>
+                <button onclick="scrollToId('contato')" class="text-xs tracking-[0.2em] uppercase hover:text-brand-gold transition-colors cursor-pointer">Contato</button>
+            </div>
+
+            <!-- CTA -->
+            <div class="hidden md:block">
+                <a href="https://wa.me/5524981262663?text=Olá%20Dr.%20Lucas%2C%20preciso%20de%20assistência%20imediata%20em%20um%20caso%20criminal.%20Podemos%20conversar%3F" target="_blank" rel="noopener noreferrer" class="inline-block text-xs tracking-[0.2em] uppercase border border-brand-gold text-brand-gold px-6 py-3 rounded-full hover:bg-brand-gold hover:text-brand-black transition-all duration-300 cursor-pointer">
+                    Plantão 24h
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden z-50 text-brand-cream cursor-pointer" id="mobile-toggle">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-brand-black z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-500 -translate-y-full">
+            <button onclick="scrollToId('sobre')" class="text-2xl font-serif tracking-widest uppercase hover:text-brand-gold transition-colors">O Escritório</button>
+            <button onclick="scrollToId('atuacao')" class="text-2xl font-serif tracking-widest uppercase hover:text-brand-gold transition-colors">Expertise</button>
+            <button onclick="scrollToId('contato')" class="text-2xl font-serif tracking-widest uppercase hover:text-brand-gold transition-colors">Contato</button>
+            <a href="https://wa.me/5524981262663?text=Olá%20Dr.%20Lucas%2C%20preciso%20de%20assistência%20imediata%20em%20um%20caso%20criminal.%20Podemos%20conversar%3F" target="_blank" rel="noopener noreferrer" class="mt-8 text-sm tracking-[0.2em] uppercase border border-brand-gold text-brand-gold px-8 py-4 rounded-full">Plantão 24h</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
+        <!-- Subtle Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-green rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="w-full max-w-6xl mx-auto reveal" id="hero-reveal">
+                <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-8 ml-2">Advocacia Criminal de Alta Complexidade</p>
+                <h1 class="text-massive font-light mb-8">
+                    Defesa <br />
+                    <span class="italic text-brand-gold">Estratégica.</span>
+                </h1>
+                <div class="flex flex-col md:flex-row gap-8 md:items-center justify-between border-t thin-border pt-8 mt-16">
+                    <div>
+                        <p class="hero-subcopy">
+                            Atuação técnica em cenários críticos, com resposta imediata e estratégia de defesa construída caso a caso, sob sigilo absoluto.
+                        </p>
+                    </div>
+                    <div class="hero-cta-row flex items-center gap-3 md:shrink-0">
+                        <a href="https://wa.me/5524981262663?text=Olá%20Dr.%20Lucas%2C%20preciso%20de%20assistência%20imediata%20em%20um%20caso%20criminal.%20Podemos%20conversar%3F" target="_blank" rel="noopener noreferrer" class="hero-cta-primary cursor-pointer inline-flex items-center justify-center">
+                            Plantão 24h
+                        </a>
+                        <a href="https://wa.me/5524981262663?text=Olá%20Dr.%20Lucas%2C%20preciso%20de%20assistência%20imediata%20em%20um%20caso%20criminal.%20Podemos%20conversar%3F" target="_blank" rel="noopener noreferrer" class="hero-cta-secondary cursor-pointer inline-flex items-center justify-center">
+                            Falar com um Sócio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy / Numbers Section -->
+    <section class="py-20 md:py-32 bg-brand-green-dark border-y thin-border">
+        <div class="max-w-7xl mx-auto px-10 sm:px-12 lg:px-8">
+            <div class="mb-16 md:mb-20 text-center md:text-left">
+                <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-4">Diferenciais</p>
+                <h2 class="text-5xl md:text-6xl font-serif font-light">Por Que Nos Escolher</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-25 md:gap-25">
+                <div class="relative reveal" style="transition-delay: 0s;">
+                    <div class="text-8xl font-serif font-light text-brand-cream/5 absolute -top-12 -left-4 select-none">01</div>
+                    <h3 class="text-2xl md:text-3xl font-serif mb-5 relative z-10 text-brand-gold">Plantão 24h</h3>
+                    <p class="text-brand-cream/80 font-light leading-relaxed relative z-10 text-base md:text-lg">Prontidão absoluta para emergências, flagrantes e operações policiais a qualquer momento.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay: 0.2s;">
+                    <div class="text-8xl font-serif font-light text-brand-cream/5 absolute -top-12 -left-4 select-none">02</div>
+                    <h3 class="text-2xl md:text-3xl font-serif mb-5 relative z-10 text-brand-gold">Sigilo</h3>
+                    <p class="text-brand-cream/80 font-light leading-relaxed relative z-10 text-base md:text-lg">Confidencialidade extrema. Seu caso tratado com a máxima discrição e proteção de dados.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay: 0.4s;">
+                    <div class="text-8xl font-serif font-light text-brand-cream/5 absolute -top-12 -left-4 select-none">03</div>
+                    <h3 class="text-2xl md:text-3xl font-serif mb-5 relative z-10 text-brand-gold">Boutique</h3>
+                    <p class="text-brand-cream/80 font-light leading-relaxed relative z-10 text-base md:text-lg">Não trabalhamos com volume. Cada caso recebe atenção exclusiva e estratégia artesanal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 md:py-32 relative">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div class="mb-10 md:mb-20 text-center md:text-left">
+                <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-4">O Escritório</p>
+                <h2 class="text-5xl md:text-6xl font-serif font-light">Excelência em Defesa Penal</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
+                <div class="relative aspect-[3/4] w-full max-w-sm md:max-w-md mx-auto lg:mx-0 reveal-scale">
+                    <!-- Oval Mask Image -->
+                    <div class="w-full h-full overflow-hidden rounded-[200px] border border-brand-cream/10 p-2">
+                        <img 
+                            src="./lucas-curityba.jpg" 
+                            alt="Dr. Lucas" 
+                            class="w-full h-full object-cover rounded-[190px] grayscale-0 opacity-100 hover:grayscale hover:opacity-80 transition-all duration-700"
+                            referrerpolicy="no-referrer"
+                        />
+                    </div>
+                </div>
+
+                <div class="reveal-x text-center lg:text-left">
+                    <h2 class="text-2xl md:text-3xl font-serif font-light mb-8">
+                        Dr. Lucas Curityba
+                    </h2>
+                    <div class="space-y-6 text-brand-cream/80 font-light leading-relaxed text-base md:text-lg">
+                        <p>A advocacia criminal não permite erros. Exige precisão cirúrgica, conhecimento profundo e, acima de tudo, coragem.</p>
+                        <p>Com mais de 8 anos dedicados exclusivamente à defesa penal, construímos uma trajetória marcada pela atuação combativa nos Tribunais e em casos de alta complexidade.</p>
+                        <p class="italic text-brand-gold">"Nossa missão não é apenas defender, mas reequilibrar a balança da justiça quando todo o peso do Estado se volta contra o indivíduo."</p>
+                    </div>
+                    
+                    <div class="mt-12 pt-12 border-t thin-border flex flex-wrap gap-12 justify-center md:justify-start text-center md:text-left">
+                        <div>
+                            <div class="text-3xl font-serif text-brand-cream mb-1">8+</div>
+                            <div class="text-xs tracking-[0.2em] uppercase text-brand-gold">Anos de Foco</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-serif text-brand-cream mb-1">Área Criminal</div>
+                            <div class="text-xs tracking-[0.2em] uppercase text-brand-gold">Atuação Superior</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="atuacao" class="py-20 md:py-32 bg-brand-green-dark">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-4">Áreas de Foco</p>
+                    <h2 class="text-5xl md:text-6xl font-serif font-light">Expertise Penal</h2>
+                </div>
+                <p class="max-w-sm mx-auto md:mx-0 text-center md:text-left text-brand-cream/60 font-light text-sm">
+                    Atuação hiper-especializada. Não fazemos de tudo, fazemos o excepcional naquilo a que nos propomos.
+                </p>
+            </div>
+
+            <div class="border-t thin-border">
+
+                <details class="faq-item group border-b thin-border px-4 mx-0 md:-mx-4 reveal" style="transition-delay: 0.1s;">
+                    <summary class="py-8 flex items-center justify-between cursor-pointer hover:bg-brand-green transition-colors">
+                        <h3 class="text-2xl md:text-4xl font-serif font-light text-brand-cream/80 group-hover:text-brand-gold transition-colors">Tribunal do Júri</h3>
+                        <i data-lucide="chevron-down" class="faq-icon text-brand-cream/30 transition-all duration-300 w-8 h-8"></i>
+                    </summary>
+                    <div class="pb-8 w-full">
+                        <p class="faq-answer">Condução integral de casos dolosos contra a vida, com preparação probatória, construção narrativa e sustentação oral para defesa sólida perante o conselho de sentença.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item group border-b thin-border px-4 mx-0 md:-mx-4 reveal" style="transition-delay: 0.2s;">
+                    <summary class="py-8 flex items-center justify-between cursor-pointer hover:bg-brand-green transition-colors">
+                        <h3 class="text-2xl md:text-4xl font-serif font-light text-brand-cream/80 group-hover:text-brand-gold transition-colors">Operações Policiais</h3>
+                        <i data-lucide="chevron-down" class="faq-icon text-brand-cream/30 transition-all duration-300 w-8 h-8"></i>
+                    </summary>
+                    <div class="pb-8 w-full">
+                        <p class="faq-answer">Atuação imediata em buscas, apreensões e prisões em flagrante, garantindo preservação de direitos, controle de legalidade dos atos e resposta jurídica em tempo real.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item group border-b thin-border px-4 mx-0 md:-mx-4 reveal" style="transition-delay: 0.4s;">
+                    <summary class="py-8 flex items-center justify-between cursor-pointer hover:bg-brand-green transition-colors">
+                        <h3 class="text-2xl md:text-4xl font-serif font-light text-brand-cream/80 group-hover:text-brand-gold transition-colors">Crimes Cibernéticos</h3>
+                        <i data-lucide="chevron-down" class="faq-icon text-brand-cream/30 transition-all duration-300 w-8 h-8"></i>
+                    </summary>
+                    <div class="pb-8 w-full">
+                        <p class="faq-answer">Defesa em casos envolvendo fraudes digitais, invasão de dispositivos, vazamento de dados e delitos informáticos complexos, com suporte técnico-jurídico especializado.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item group border-b thin-border px-4 mx-0 md:-mx-4 reveal" style="transition-delay: 0.5s;">
+                    <summary class="py-8 flex items-center justify-between cursor-pointer hover:bg-brand-green transition-colors">
+                        <h3 class="text-2xl md:text-4xl font-serif font-light text-brand-cream/80 group-hover:text-brand-gold transition-colors">Compliance Criminal</h3>
+                        <i data-lucide="chevron-down" class="faq-icon text-brand-cream/30 transition-all duration-300 w-8 h-8"></i>
+                    </summary>
+                    <div class="pb-8 w-full">
+                        <p class="faq-answer">Estruturação de protocolos preventivos, investigações internas e planos de resposta para mitigar riscos penais em empresas e fortalecer governança corporativa.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item group border-b thin-border px-4 mx-0 md:-mx-4 reveal" style="transition-delay: 0s;">
+                    <summary class="py-8 flex items-center justify-between cursor-pointer hover:bg-brand-green transition-colors">
+                        <h3 class="text-2xl md:text-4xl font-serif font-light text-brand-cream/80 group-hover:text-brand-gold transition-colors">Direito Penal Econômico</h3>
+                        <i data-lucide="chevron-down" class="faq-icon text-brand-cream/30 transition-all duration-300 w-8 h-8"></i>
+                    </summary>
+                    <div class="pb-8 w-full">
+                        <p class="faq-answer">Defesa técnica em investigações e processos envolvendo crimes financeiros, tributários e empresariais, com atuação estratégica desde a fase inicial até os tribunais superiores.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item group border-b thin-border px-4 mx-0 md:-mx-4 reveal" style="transition-delay: 0.3s;">
+                    <summary class="py-8 flex items-center justify-between cursor-pointer hover:bg-brand-green transition-colors">
+                        <h3 class="text-2xl md:text-4xl font-serif font-light text-brand-cream/80 group-hover:text-brand-gold transition-colors">Habeas Corpus e Recursos</h3>
+                        <i data-lucide="chevron-down" class="faq-icon text-brand-cream/30 transition-all duration-300 w-8 h-8"></i>
+                    </summary>
+                    <div class="pb-8 w-full">
+                        <p class="faq-answer">Elaboração de medidas urgentes e recursos estratégicos para reversão de prisões, nulidades e decisões desfavoráveis, com foco em eficácia e rapidez processual.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 md:py-32 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-green rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-6xl font-serif font-light mb-8 text-center lg:text-left">
+                        Inicie sua <br />
+                        <span class="italic text-brand-gold">Defesa.</span>
+                    </h2>
+                    <p class="text-brand-cream/70 font-light mb-16 max-w-md mx-auto lg:mx-0 text-center lg:text-left">
+                        O tempo é o fator mais crítico em questões criminais. Entre em contato imediatamente para agendar uma consulta sigilosa.
+                    </p>
+
+                    <div class="space-y-10">
+                        <div class="flex items-center gap-6 group">
+                            <div class="w-14 h-14 rounded-full border border-brand-cream/20 flex items-center justify-center group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs tracking-[0.2em] uppercase text-brand-cream/50 mb-1">Plantão 24h</p>
+                                <p class="text-xl font-serif">(24) 98126-2663</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-6 group">
+                            <div class="w-14 h-14 rounded-full border border-brand-cream/20 flex items-center justify-center group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs tracking-[0.2em] uppercase text-brand-cream/50 mb-1">E-mail Direto</p>
+                                <p class="text-xl font-serif">contato@curityba.adv.br</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-6 group">
+                            <div class="w-14 h-14 rounded-full border border-brand-cream/20 flex items-center justify-center group-hover:border-brand-gold group-hover:text-brand-gold transition-colors">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs tracking-[0.2em] uppercase text-brand-cream/50 mb-1">Escritório</p>
+                                <p class="text-lg font-serif">R. Capitão Zenóbio, 1000 - Paty do Alferes, RJ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Contact Banner -->
+                <div class="bg-brand-green-dark/50 backdrop-blur-sm p-8 md:p-12 border thin-border rounded-2xl reveal-scale" style="transition-delay: 0.2s;">
+                    <div class="h-full flex flex-col justify-between gap-10 text-center lg:text-left">
+                        <div>
+                            <p class="text-brand-gold text-xs tracking-[0.28em] uppercase mb-4">Canal Preferencial</p>
+                            <h3 class="text-3xl md:text-4xl font-serif font-light mb-6">Contato Direto via WhatsApp</h3>
+                            <p class="text-brand-cream/75 font-light leading-relaxed">
+                                Clique no botão abaixo para iniciar uma conversa imediata e sigilosa com nossa equipe. Atendimento rápido para situações urgentes.
+                            </p>
+                        </div>
+
+                        <a
+                            href="https://wa.me/5524981262663?text=Olá%20Dr.%20Lucas%2C%20preciso%20de%20assistência%20imediata%20em%20um%20caso%20criminal.%20Podemos%20conversar%3F"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full bg-brand-cream text-brand-black py-4 rounded-full text-sm tracking-[0.2em] uppercase font-medium hover:bg-brand-gold transition-colors cursor-pointer inline-flex items-center justify-center gap-3"
+                        >
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Entrar em Contato
+                        </a>
+
+                        <p class="text-center text-xs text-brand-cream/40 font-light">
+                            Atendimento humano, direto e protegido por sigilo profissional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t thin-border bg-brand-black">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-serif text-xl tracking-widest uppercase">
+                Lucas Curityba<span class="text-brand-gold">.</span>
+            </div>
+            <p class="text-brand-cream/40 text-sm font-light text-center md:text-left">
+                &copy; <span id="year"></span> Lucas Curityba Advocacia Criminal. Todos os direitos reservados. OAB/RJ 241.588
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
