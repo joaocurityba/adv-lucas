@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links | Lucas Curityba Advocacia</title>
+    <link rel="icon" type="image/png" href="favicon2.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS (V4 in Browser) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+            --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+            
+            --color-brand-black: #030705;
+            --color-brand-green-dark: #08140F;
+            --color-brand-green: #112A20;
+            --color-brand-gold: #D4AF37;
+            --color-brand-gold-light: #E8C968;
+            --color-brand-cream: #F4F1EB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--color-brand-black);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-brand-black);
+            color: var(--color-brand-cream);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, var(--color-brand-gold-light), var(--color-brand-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+    <!-- Subtle Background Glow -->
+    <div class="fixed top-[10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-green rounded-full blur-[120px] opacity-40 pointer-events-none -z-10"></div>
+
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-12 max-w-[600px] mx-auto w-full z-10">
+        
+        <!-- Profile Header -->
+        <header class="flex flex-col items-center mb-10 text-center">
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-brand-gold/50 mb-6 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+                <img src="lucas-curityba.jpg" alt="Lucas Curityba" class="w-full h-full object-cover object-top" />
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-serif text-brand-cream mb-2">Lucas Curityba</h1>
+            <p class="text-brand-gold text-[10px] md:text-xs tracking-[0.3em] uppercase">Advocacia Criminal de Alta Complexidade</p>
+        </header>
+
+        <!-- Links Container -->
+        <div class="w-full flex flex-col gap-4">
+            
+            <!-- Link 1: WhatsApp (Destacado) -->
+            <a href="https://wa.me/5524981262663" target="_blank" rel="noopener noreferrer" 
+               class="group relative w-full flex items-center justify-between p-4 md:p-5 rounded-full bg-brand-gold text-brand-black hover:bg-brand-gold-light transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(212,175,55,0.2)]">
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                </div>
+                <span class="font-medium text-sm md:text-base tracking-wide flex-1 text-center">Atendimento via WhatsApp</span>
+                <div class="w-6 h-6 flex items-center justify-center">
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"></i>
+                </div>
+            </a>
+
+            <!-- Link 2: Website -->
+            <a href="index.html" 
+               class="group relative w-full flex items-center justify-between p-4 md:p-5 rounded-full border border-brand-gold/50 text-brand-cream hover:bg-brand-gold/10 hover:border-brand-gold transition-all duration-300 transform hover:-translate-y-1">
+                <div class="w-6 h-6 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="globe" class="w-5 h-5"></i>
+                </div>
+                <span class="font-medium text-sm md:text-base tracking-wide flex-1 text-center">Acessar nosso Site</span>
+                <div class="w-6 h-6 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </div>
+            </a>
+
+            <!-- Link 3: E-mail -->
+            <a href="mailto:lucascurityba1@gmail.com" 
+               class="group relative w-full flex items-center justify-between p-4 md:p-5 rounded-full border border-brand-gold/50 text-brand-cream hover:bg-brand-gold/10 hover:border-brand-gold transition-all duration-300 transform hover:-translate-y-1">
+                <div class="w-6 h-6 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <span class="font-medium text-sm md:text-base tracking-wide flex-1 text-center">Enviar E-mail</span>
+                <div class="w-6 h-6 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="arrow-up-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </div>
+            </a>
+            
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 flex flex-col items-center justify-center gap-4 mt-auto z-10">
+        <img src="favicon2.png" alt="LC Logo" class="w-10 h-10 opacity-70 hover:opacity-100 transition-opacity" />
+        <p class="text-[10px] uppercase tracking-[0.2em] text-brand-cream/40">© 2026 Lucas Curityba Advocacia</p>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
